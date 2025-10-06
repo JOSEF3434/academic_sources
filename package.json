@@ -1,0 +1,30 @@
+{
+  "name": "academic_sources ",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JOSEF3434/academic_sources.git"
+  },
+  "keywords": [
+    "joce"
+  ],
+  "author": "jocemane",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JOSEF3434/academic_sources/issues"
+  },
+  "homepage": "https://github.com/JOSEF3434/academic_sources#readme",
+  "dependencies": {
+    "axios": "^1.12.2",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.0",
+    "nodemon": "^3.1.10"
+  }
+}
