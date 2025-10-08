@@ -6,8 +6,10 @@ services:
     container_name: aah-backend
     env_file:
       - ./.env
+    environment:
+      - PORT=5000
     ports:
-      - "8000:8000"
+      - "5000:5000"
     volumes:
       - ./backend:/app
       - ./uploads:/app/uploads
@@ -15,6 +17,14 @@ services:
       - mongo
       - qdrant
       - n8n
+
+  frontend:
+    build: ./frontend
+    container_name: aah-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
 
   mongo:
     image: mongo:6
