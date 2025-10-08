@@ -2,9 +2,14 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { QdrantClient } = require("@qdrant/js-client-rest");
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const qdrant = new QdrantClient({
-  url: process.env.QDRANT_URL || "http://localhost:6333",
-});
+let qdrant = null;
+try {
+  qdrant = new QdrantClient({
+    url: process.env.QDRANT_URL || "http://localhost:6333",
+  });
+} catch (_) {
+  qdrant = null;
+}
 const collection = process.env.QDRANT_COLLECTION || "academic_sources";
 
 async function embedText(text) {
@@ -14,13 +19,18 @@ async function embedText(text) {
 }
 
 async function searchSimilarSources(queryText, topK = 5) {
-  const vector = await embedText(queryText);
-  const result = await qdrant.search(collection, {
-    vector,
-    limit: topK,
-    with_payload: true,
-  });
-  return result.map((r) => ({ score: r.score, ...r.payload }));
+  try {
+    if (!qdrant) return [];
+    const vector = await embedText(queryText);
+    const result = await qdrant.search(collection, {
+      vector,
+      limit: topK,
+      with_payload: true,
+    });
+    return result.map((r) => ({ score: r.score, ...r.payload }));
+  } catch (_) {
+    return [];
+  }
 }
 
 async function analyzeAssignment({ content, similarSources }) {

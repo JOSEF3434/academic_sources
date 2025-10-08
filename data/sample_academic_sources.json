@@ -1,0 +1,21 @@
+[
+  {
+    "title": "Introduction to Machine Learning",
+    "authors": "A. Author, B. Researcher",
+    "publication_year": 2020,
+    "abstract": "This paper introduces core ML concepts and supervised learning.",
+    "full_text": "Supervised learning involves training on labeled datasets...",
+    "source_type": "paper"
+  },
+  {
+    "title": "Academic Writing Best Practices",
+    "authors": "C. Scholar",
+    "publication_year": 2018,
+    "abstract": "Guidelines for citations, structure, and avoiding plagiarism in essays.",
+    "full_text": "When writing academic essays, students should structure arguments and cite sources...",
+    "source_type": "textbook"
+  }
+]
+
+
+

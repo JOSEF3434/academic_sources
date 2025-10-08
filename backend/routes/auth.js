@@ -8,8 +8,11 @@ const router = express.Router();
 
 router.post(
   "/register",
-  body("email").isEmail(),
-  body("password").isLength({ min: 6 }),
+  body("email").isEmail().withMessage("Valid email is required"),
+  body("password")
+    .isString()
+    .isLength({ min: 6 })
+    .withMessage("Password must be at least 6 characters"),
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty())
@@ -31,8 +34,8 @@ router.post(
 
 router.post(
   "/login",
-  body("email").isEmail(),
-  body("password").isString(),
+  body("email").isEmail().withMessage("Valid email is required"),
+  body("password").isString().withMessage("Password is required"),
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty())
